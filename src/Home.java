@@ -1,18 +1,18 @@
 import java.util.Scanner;
-
+import Hospital.Doctor;
 public class Home {
     public static void main(String[] args) {
         System.out.println("Welcome To HKS Hospital");
         int stop=1;
         Scanner sc = new Scanner(System.in);
         while(stop==1){
-            System.out.println("Choose One Of The Following: \n1)Doctor Records\n2)Patient Records\n3)Pharmacy\n4)Facilities\n5)Contacts And FAQs\n6)EXIT");
+            System.out.println("Choose One Of The Following: \n1)Our Doctors\n2)Patients\n3)HKS Pharmacy\n4)Our Facilities\n5)Contacts And FAQs\n6)EXIT");
             try {
                 int choice;
                 choice = sc.nextInt();
                 switch (choice){
                     case 1:
-                        //Doctors();
+                       Doctor.docHome();
                         break;
                     case 2:
                         //Patients();
