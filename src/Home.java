@@ -1,5 +1,5 @@
 import java.util.Scanner;
-import Hospital.Doctor;
+import Hospital.*;
 public class Home {
     public static void main(String[] args) {
         System.out.println("Welcome To HKS Hospital");
@@ -15,10 +15,10 @@ public class Home {
                        Doctor.docHome();
                         break;
                     case 2:
-                        //Patients();
+                        Patient.patientHome();
                         break;
                     case 3:
-                        //Pharmacy();
+                        Pharmacy.pharmaHome();
                         break;
                     case 4:
                        // Facilities();

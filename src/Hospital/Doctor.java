@@ -37,21 +37,20 @@ public class Doctor {
         String line = "";
         String splitBy = ",";
         try{
-//parsing a CSV file into BufferedReader class constructor
-            BufferedReader br = new BufferedReader(new FileReader("D:\\HospitalManagementSystem\\src\\Hospital\\Doctors.csv"));
+            BufferedReader br = new BufferedReader(new FileReader("D:\\HKSHospital\\src\\Hospital\\Doctors.csv"));
            if(flag==0){
-               while ((line = br.readLine()) != null)   //returns a Boolean value
+               while ((line = br.readLine()) != null)
                {
-                   String[] doctor = line.split(splitBy);    // use comma as separator
-                   System.out.println(doctor[0] + " "  + doctor[1] + " " + doctor[2] + " " + doctor[3] + " " + doctor[4] + " " + doctor[5]+ " " + doctor[6]+ " " + doctor[7]);
+                   String[] doctor = line.split(splitBy);
+                   System.out.println(String.format("| %-15s | | %-15s | | %-15s | | %-15s | | %-15s | | %-10s | | %-10s | | %-10s |",doctor[0], doctor[1], doctor[2], doctor[3], doctor[4] ,  doctor[5],doctor[6], doctor[7]));
                }
            }
            else{
                int count =0;
-               while ((line = br.readLine()) != null)   //returns a Boolean value
+               while ((line = br.readLine()) != null)
                {
 
-                   String[] doctor = line.split(splitBy);    // use comma as separator
+                   String[] doctor = line.split(splitBy);
                    if(count == 0){
                        count++;
                        continue;}
@@ -71,7 +70,7 @@ public class Doctor {
     }
     public static void addDoc() {
         try {
-            FileWriter writer = new FileWriter("D:\\HospitalManagementSystem\\src\\Hospital\\Doctors.csv", true);
+            FileWriter writer = new FileWriter("D:\\HKSHospital\\src\\Hospital\\Doctors.csv", true);
             BufferedWriter bwr = new BufferedWriter(writer);
             sc.nextLine();
             System.out.println("Enter First Name");
