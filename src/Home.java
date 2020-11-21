@@ -21,7 +21,7 @@ public class Home {
                         Pharmacy.pharmaHome();
                         break;
                     case 4:
-                       // Facilities();
+                       Facilities.facHome();
                         break;
                     case 5:
                         //Contacts();

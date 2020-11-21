@@ -42,15 +42,15 @@ public class Patient {
         String line = "";
         String splitBy = ",";
         try {
-//parsing a CSV file into BufferedReader class constructor
             BufferedReader br = new BufferedReader(new FileReader("D:\\HKSHospital\\src\\Hospital\\Patients.csv"));
-
-            while ((line = br.readLine()) != null)   //returns a Boolean value
-            {
-                String[] patient = line.split(splitBy);    // use comma as separator
-                System.out.println(patient[0] + " " + patient[1] + " " + patient[2] + " " + patient[3] + " " + patient[4] + " " + patient[5] + " " + patient[6] + " " + patient[7]);
+            System.out.println(" ______________________________________________________________________________________________________________________________________");
+            System.out.println(String.format("| %-14s | | %-14s | | %-14s | | %-15s | | %-11s | | %-8s | | %-10s | | %-11s |","Unique ID", "First Name", "Last Name", "Disease", "Room Number" ,  "Amnt Due","Amnt Paid", "Status"));
+            System.out.println(" --------------------------------------------------------------------------------------------------------------------------------------");
+            while ((line = br.readLine()) != null) {
+                String[] patient = line.split(splitBy);
+                System.out.println(String.format("| %-14s | | %-14s | | %-14s | | %-15s | | %-11s | | %-8s | | %-10s | | %-11s |",patient[0], patient[1], patient[2], patient[3], patient[4] ,  patient[5],patient[6], patient[7]));
             }
-
+            System.out.println(" --------------------------------------------------------------------------------------------------------------------------------------");
             br.close();
         } catch (IOException e) {
             e.printStackTrace();
@@ -64,7 +64,7 @@ public class Patient {
             sc.nextLine();
             int roomNum = 0;
             System.out.println("Enter First Name");
-            String docName = sc.nextLine();
+            String patientName = sc.nextLine();
             System.out.println("Enter Last Name");
             String lastName = sc.nextLine();
             System.out.println("Enter Disease");
@@ -94,10 +94,10 @@ public class Patient {
                     }
                 }
             }
-            bwr.write(uid() + "," + docName + "," + lastName + "," + disease + "," + roomchar + "" + roomNum + ",0,0,Admitted");
+            bwr.write(uid() + "," + patientName + "," + lastName + "," + disease + "," + roomchar + "" + roomNum + ",0,0,Admitted");
             bwr.write("\n");
             bwr.close();
-            System.out.println("succesfully written to a file");
+            System.out.println("Patient Admitted Successfully");
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
@@ -194,7 +194,7 @@ public class Patient {
                         }*/
                     }
                     else{
-                        System.out.println("Payyyy");
+                        System.out.println("Please Pay The Amount Due To Discharge The Patient");
                         bwr.write(patient[0] + "," + patient[1] + "," + patient[2] + "," + patient[3] + "," + patient[4] + "," + patient[5] + "," + patient[6] + "," + patient[7]);
                     }
                 }
@@ -210,12 +210,12 @@ public class Patient {
                 File oldName = new File("D:\\HKSHospital\\src\\Hospital\\Patients2.csv");
                 File newName = new File("D:\\HKSHospital\\src\\Hospital\\Patients.csv");
                 if(oldName.renameTo(newName)) {
-                    System.out.println("succesfully written to a file");
+                    System.out.println("Loading......");
                 } else {
-                    System.out.println("Error");
+                    System.out.println("ERROR!!!");
                 }
             } else {
-                System.out.println("Failed to delete the file.");
+                System.out.println("FAILED TO ADD");
             }
 
         } catch (IOException ioe) {
@@ -223,7 +223,7 @@ public class Patient {
         }
     }
     public static void payment(){
-        System.out.println("Enter The UID Of The Patient To Be Discharged");
+        System.out.println("Please Enter The UID Of The Patient");
         String id = sc.next();
         String line = "";
         String splitBy = ",";
@@ -256,12 +256,12 @@ public class Patient {
                 File oldName = new File("D:\\HKSHospital\\src\\Hospital\\Patients2.csv");
                 File newName = new File("D:\\HKSHospital\\src\\Hospital\\Patients.csv");
                 if(oldName.renameTo(newName)) {
-                    System.out.println("succesfully written to a file");
+                    System.out.println("Loading.....");
                 } else {
-                    System.out.println("Error");
+                    System.out.println("ERROR!!");
                 }
             } else {
-                System.out.println("Failed to delete the file.");
+                System.out.println("FAILED TO ADD");
             }
 
         } catch (IOException ioe) {
@@ -310,12 +310,12 @@ public class Patient {
                 File oldName = new File("D:\\HKSHospital\\src\\Hospital\\Patients2.csv");
                 File newName = new File("D:\\HKSHospital\\src\\Hospital\\Patients.csv");
                 if(oldName.renameTo(newName)) {
-                    System.out.println("succesfully written to a file");
+                    System.out.println("Loading...");
                 } else {
-                    System.out.println("Error");
+                    System.out.println("ERROR!!!");
                 }
             } else {
-                System.out.println("Failed to delete the file.");
+                System.out.println("FAILED TO ADD");
             }
 
         } catch (IOException ioe) {
