@@ -68,7 +68,7 @@ public class Pharmacy extends Patient{
                 File oldName = new File("D:\\HKSHospital\\src\\Hospital\\Patients2.csv");
                 File newName = new File("D:\\HKSHospital\\src\\Hospital\\Patients.csv");
                 if(oldName.renameTo(newName)) {
-                    System.out.println("succesfully written to a file");
+                    System.out.println("");
                 } else {
                     System.out.println("Error");
                 }
@@ -168,7 +168,7 @@ public class Pharmacy extends Patient{
                     File oldName = new File("D:\\HKSHospital\\src\\Hospital\\Pharm2.csv");
                     File newName = new File("D:\\HKSHospital\\src\\Hospital\\Pharm.csv");
                     if(oldName.renameTo(newName)) {
-                        System.out.println("succesfully written to a file");
+                        System.out.println("");
                     } else {
                         System.out.println("Error");
                     }

@@ -2,6 +2,8 @@ package Hospital;
 
 import java.util.Scanner;
 
+import static Hospital.Pharmacy.outside;
+
 public class Facilities extends Patient{
     static Scanner sc = new Scanner(System.in);
     public static void facHome() {
@@ -33,8 +35,23 @@ public class Facilities extends Patient{
 
     }
     public static void labTesting(){
-        int ch;
-        System.out.println("YO");
+        System.out.println("Choose One Of The Following: \n1)Book An Appointment\n2)Have An Appointment\n3)Back");
+       try {
+           int c;
+           c = sc.nextInt();
+           switch (c) {
+               case 1 -> Testing.bookappointment();
+               case 2 -> Testing.haveappointment();
+               case 3 -> {
+                   System.out.println("Returning Home...");
+                   facHome();
+               }
+               default -> System.out.println("Invalid Choice");
+           }
+       } catch (Exception e) {
+           e.printStackTrace();
+       }
+
     }
     public static void availRooms(){
         System.out.println("----------------------------------------------------------------------------");

@@ -177,21 +177,6 @@ public class Patient {
                 if(patient[0].equals(id) && patient[7].equals("Admitted")){
                     if(patient[5].equals("0")){
                         bwr.write(patient[0] + "," + patient[1] + "," + patient[2] + "," + patient[3] + "," + patient[4] + "," + patient[5] + "," + patient[6] + ",Discharged");
-                        /* if (patient[4].charAt(0) == 'A') {
-                            System.out.println("HAHSHA");
-                            room[0][Integer.parseInt(patient[4].substring(1)) - 1] = 0;
-                            System.out.println("Aur zyada Andar aaya hu");
-                        }
-                        if (patient[4].charAt(0) == 'B') {
-                            System.out.println("HAHSHA");
-                            room[1][Integer.parseInt(patient[4].substring(1)) - 1] = 0;
-                            System.out.println("Aur zyada Andar aaya hu");
-                        }
-                        if(patient[4].charAt(0) == 'C'){
-                            System.out.println("HAHSHA");
-                            room[2][Integer.parseInt(patient[4].substring(1)) - 1] = 0;
-                            System.out.println("Aur zyada Andar aaya hu");
-                        }*/
                     }
                     else{
                         System.out.println("Please Pay The Amount Due To Discharge The Patient");
@@ -210,7 +195,7 @@ public class Patient {
                 File oldName = new File("D:\\HKSHospital\\src\\Hospital\\Patients2.csv");
                 File newName = new File("D:\\HKSHospital\\src\\Hospital\\Patients.csv");
                 if(oldName.renameTo(newName)) {
-                    System.out.println("Loading......");
+                    System.out.println("");
                 } else {
                     System.out.println("ERROR!!!");
                 }
@@ -256,7 +241,7 @@ public class Patient {
                 File oldName = new File("D:\\HKSHospital\\src\\Hospital\\Patients2.csv");
                 File newName = new File("D:\\HKSHospital\\src\\Hospital\\Patients.csv");
                 if(oldName.renameTo(newName)) {
-                    System.out.println("Loading.....");
+                    System.out.println("");
                 } else {
                     System.out.println("ERROR!!");
                 }
@@ -310,7 +295,7 @@ public class Patient {
                 File oldName = new File("D:\\HKSHospital\\src\\Hospital\\Patients2.csv");
                 File newName = new File("D:\\HKSHospital\\src\\Hospital\\Patients.csv");
                 if(oldName.renameTo(newName)) {
-                    System.out.println("Loading...");
+                    System.out.println("");
                 } else {
                     System.out.println("ERROR!!!");
                 }
