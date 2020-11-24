@@ -39,6 +39,7 @@ public class Pharmacy extends Patient{
         String id = sc.next();
         String line = "";
         int check=0;
+        int notFound=0;
         total=0;
         flag=0;
         String splitBy = ",";
@@ -49,6 +50,7 @@ public class Pharmacy extends Patient{
             while ((line = br.readLine()) != null) {
                 String[] patient = line.split(splitBy);
                 if(patient[0].equals(id) && patient[7].equals("Admitted")){
+                    notFound=1;
                     System.out.println("1)Enter The Name Of The Medicine\n2)Enter The Type Of Medicine");
                     int ch = sc.nextInt();
                     if(ch==1){medName();}
@@ -59,6 +61,7 @@ public class Pharmacy extends Patient{
                 else{
                     bwr.write(patient[0] + "," + patient[1] + "," + patient[2] + "," + patient[3] + "," + patient[4] + "," + patient[5] + "," + patient[6] + "," + patient[7]);
                 }
+
                 bwr.write("\n");
             }
             br.close();
@@ -68,7 +71,7 @@ public class Pharmacy extends Patient{
                 File oldName = new File("D:\\HKSHospital\\src\\Hospital\\Patients2.csv");
                 File newName = new File("D:\\HKSHospital\\src\\Hospital\\Patients.csv");
                 if(oldName.renameTo(newName)) {
-                    System.out.println("");
+                    System.out.print("");
                 } else {
                     System.out.println("Error");
                 }
@@ -79,19 +82,25 @@ public class Pharmacy extends Patient{
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
-        Enumeration medsi = bill.elements();
-        while (medsi.hasMoreElements()) {
-            System.out.println(medsi.nextElement());
+        if(notFound==0){
+            System.out.println("No Patient With The Following ID Is Admitted");
         }
-        System.out.println("TOTAL:      " + total);
-        System.out.println("When Do You Wish To Pay :1) Now 2) During Discharge");
-        int h = sc.nextInt();
-        if(h==1){
-            payment();
+        else {
+            Enumeration medsi = bill.elements();
+            while (medsi.hasMoreElements()) {
+                System.out.println(medsi.nextElement());
+            }
+            System.out.println("TOTAL:      " + total);
+            System.out.println("When Do You Wish To Pay :1) Now 2) During Discharge");
+            int h = sc.nextInt();
+            if(h==1){
+                payment();
+            }
+            else{
+                System.out.println("Your Medicine Bill Has Been Added To Your Account");
+            }
         }
-        else{
-            System.out.println("Your Medicine Bill Has Been Added To Your Account");
-        }
+
     }
     public static void outside(){
         int ch;
@@ -140,6 +149,7 @@ public class Pharmacy extends Patient{
                         else{
                             int qty =0;
                             System.out.println("The Available Quantity is: "+ medicine[2]);
+                            System.out.println("Each For Rs. "+medicine[3]);
                             System.out.println("Enter The Quantity");
                             qty = sc.nextInt();
                             while(qty>Integer.parseInt(medicine[2])){
@@ -168,7 +178,7 @@ public class Pharmacy extends Patient{
                     File oldName = new File("D:\\HKSHospital\\src\\Hospital\\Pharm2.csv");
                     File newName = new File("D:\\HKSHospital\\src\\Hospital\\Pharm.csv");
                     if(oldName.renameTo(newName)) {
-                        System.out.println("");
+                        System.out.print("");
                     } else {
                         System.out.println("Error");
                     }
@@ -189,21 +199,29 @@ public class Pharmacy extends Patient{
         public static void medType(){
             flag=1;
             System.out.println("Enter The Type Of Medicine You Want");
-            System.out.println("Ayurvedic\nMulti-Vitamin\nAntiseptic\nNasal Spray\nPain relief\n");
+            System.out.println("Ayurvedic\nMulti-Vitamin\nAntiseptic\nNasal Spray\nPain relief\nAntipyretic\nCough and Cold");
             sc.nextLine();
             String type = sc.nextLine();
             String line = "";
             String splitBy = ",";
+            int notFound=0;
             try {
                 BufferedReader br = new BufferedReader(new FileReader("D:\\HKSHospital\\src\\Hospital\\Pharm.csv"));
                 while ((line = br.readLine()) != null) {
                     String[] medicine = line.split(splitBy);
                     if(medicine[1].equals(type)){
+                         notFound=1;
                          System.out.println(medicine[0]+" "+medicine[1]+" "+medicine[2]);
                     }
                 }
                 br.close();
-                medName();
+                if(notFound==0){
+                    System.out.println("No Such Type Available");
+                }
+                else{
+                    medName();
+                }
+
             } catch (IOException e) {
                 e.printStackTrace();
             }

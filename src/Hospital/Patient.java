@@ -4,19 +4,21 @@ import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
 public class Patient {
     static Scanner sc = new Scanner(System.in);
     static int room[][] = new int[3][];
+    static int visit[][] = new int[3][];
+    static int iter = 0;
 
     public static void patientHome() {
         System.out.println("PATIENTS");
         int stop = 1;
-
         while (stop == 1) {
-            System.out.println("Choose One Of The Following: \n1)Patient Records\n2)Admit New Patient\n3)Payment\n4)Discharge Patient\n5)Back");
+            System.out.println("Choose One Of The Following: \n1)Patient Records\n2)Admit New Patient\n3)Payment\n4)Discharge Patient\n5)Visit A Patient\n6)BACK");
             try {
                 int choice;
                 choice = sc.nextInt();
@@ -26,6 +28,15 @@ public class Patient {
                     case 3 -> payment();
                     case 4 -> discharge();
                     case 5 -> {
+                        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH");
+                        LocalDateTime now = LocalDateTime.now();
+                        if(Integer.parseInt(dtf.format(now))  > 00 && Integer.parseInt(dtf.format(now)) < 3 )
+                            visitation();
+                        else{
+                            System.out.println("Visiting Timings Are From 2 P.M To 6 P.M");
+                        }
+                    }
+                    case 6 -> {
                         System.out.println("Returning Home...");
                         stop = 0;
                     }
@@ -44,11 +55,11 @@ public class Patient {
         try {
             BufferedReader br = new BufferedReader(new FileReader("D:\\HKSHospital\\src\\Hospital\\Patients.csv"));
             System.out.println(" ______________________________________________________________________________________________________________________________________");
-            System.out.println(String.format("| %-14s | | %-14s | | %-14s | | %-15s | | %-11s | | %-8s | | %-10s | | %-11s |","Unique ID", "First Name", "Last Name", "Disease", "Room Number" ,  "Amnt Due","Amnt Paid", "Status"));
+            System.out.printf("| %-14s | | %-14s | | %-14s | | %-15s | | %-11s | | %-8s | | %-10s | | %-11s |%n","Unique ID", "First Name", "Last Name", "Reason Of Admit", "Bed Number" ,  "Amnt Due","Amnt Paid", "Status");
             System.out.println(" --------------------------------------------------------------------------------------------------------------------------------------");
             while ((line = br.readLine()) != null) {
                 String[] patient = line.split(splitBy);
-                System.out.println(String.format("| %-14s | | %-14s | | %-14s | | %-15s | | %-11s | | %-8s | | %-10s | | %-11s |",patient[0], patient[1], patient[2], patient[3], patient[4] ,  patient[5],patient[6], patient[7]));
+                System.out.printf("| %-14s | | %-14s | | %-14s | | %-15s | | %-11s | | %-8s | | %-10s | | %-11s |%n",patient[0], patient[1], patient[2], patient[3], patient[4] ,  patient[5],patient[6], patient[7]);
             }
             System.out.println(" --------------------------------------------------------------------------------------------------------------------------------------");
             br.close();
@@ -67,7 +78,7 @@ public class Patient {
             String patientName = sc.nextLine();
             System.out.println("Enter Last Name");
             String lastName = sc.nextLine();
-            System.out.println("Enter Disease");
+            System.out.println("Enter Reason For Admission");
             String disease = sc.nextLine();
             System.out.println("Which Category Of Room Do You Prefer");
             roomAvail();
@@ -177,6 +188,7 @@ public class Patient {
                 if(patient[0].equals(id) && patient[7].equals("Admitted")){
                     if(patient[5].equals("0")){
                         bwr.write(patient[0] + "," + patient[1] + "," + patient[2] + "," + patient[3] + "," + patient[4] + "," + patient[5] + "," + patient[6] + ",Discharged");
+                        System.out.println("Patient Discharged Successfully");
                     }
                     else{
                         System.out.println("Please Pay The Amount Due To Discharge The Patient");
@@ -195,7 +207,7 @@ public class Patient {
                 File oldName = new File("D:\\HKSHospital\\src\\Hospital\\Patients2.csv");
                 File newName = new File("D:\\HKSHospital\\src\\Hospital\\Patients.csv");
                 if(oldName.renameTo(newName)) {
-                    System.out.println("");
+                    System.out.print("");
                 } else {
                     System.out.println("ERROR!!!");
                 }
@@ -208,6 +220,7 @@ public class Patient {
         }
     }
     public static void payment(){
+        System.out.println("PAYMENT PORTAL");
         System.out.println("Please Enter The UID Of The Patient");
         String id = sc.next();
         String line = "";
@@ -228,7 +241,9 @@ public class Patient {
                     int amntDue= Integer.parseInt(patient[5]) - amnt;
                     int amntPaid = Integer.parseInt(patient[6]) + amnt;
                     bwr.write(patient[0] + "," + patient[1] + "," + patient[2] + "," + patient[3] + "," + patient[4] + "," + amntDue + "," + amntPaid + "," + patient[7]);
+                    System.out.println("Payment Received");
                 }
+
                 else{
                     bwr.write(patient[0] + "," + patient[1] + "," + patient[2] + "," + patient[3] + "," + patient[4] + "," + patient[5] + "," + patient[6] + "," + patient[7]);
                 }
@@ -241,7 +256,7 @@ public class Patient {
                 File oldName = new File("D:\\HKSHospital\\src\\Hospital\\Patients2.csv");
                 File newName = new File("D:\\HKSHospital\\src\\Hospital\\Patients.csv");
                 if(oldName.renameTo(newName)) {
-                    System.out.println("");
+                    System.out.print("");
                 } else {
                     System.out.println("ERROR!!");
                 }
@@ -295,7 +310,7 @@ public class Patient {
                 File oldName = new File("D:\\HKSHospital\\src\\Hospital\\Patients2.csv");
                 File newName = new File("D:\\HKSHospital\\src\\Hospital\\Patients.csv");
                 if(oldName.renameTo(newName)) {
-                    System.out.println("");
+                    System.out.print("");
                 } else {
                     System.out.println("ERROR!!!");
                 }
@@ -307,6 +322,72 @@ public class Patient {
             ioe.printStackTrace();
         }
         payment();
+    }
+    public static void visitation(){
+        System.out.println("Enter The UID Of The Patient To Be Visit");
+        String id = sc.next();
+        String line = "";
+        int notFound=0;
+        String splitBy = ",";
+        try {
+            BufferedReader br = new BufferedReader(new FileReader("D:\\HKSHospital\\src\\Hospital\\Patients.csv"));
+            while ((line = br.readLine()) != null) {
+                String[] patient = line.split(splitBy);
+                if (patient[0].equals(id) && patient[7].equals("Admitted")) {
+                    notFound=1;
+                    if(patient[4].charAt(0)=='A'){
+                        visitRoom(0,patient[4].substring(1),4,'A');
+                    }
+                    if(patient[4].charAt(0)=='B'){
+                        visitRoom(1,patient[4].substring(1),2,'B');
+                    }
+                    if(patient[4].charAt(0)=='C'){
+                        visitRoom(2,patient[4].substring(1),1,'C');
+                    }
+                }
+            }
+            if(notFound==0){
+                System.out.println("No Patient With The Following ID Is Admitted");
+            }
+            br.close();
+        } catch (IOException ioe) {
+            ioe.printStackTrace();
+        }
+    }
+    public static void visitRoom(int x,String r,int y,char b){
+        if(iter==0){
+            visit[0] = new int[10];
+            visit[1] = new int[20];
+            visit[2] = new int[30];
+            iter++;
+        }
+        if(visit[x][Integer.parseInt(r)] < y){
+            visit[x][Integer.parseInt(r)]  += 1;
+            System.out.println("You May Proceed To Bed Number: "+b+r);
+        }
+        else{
+            System.out.println("Room Already Filled. Would You Like To Wait For Someone To Leave 1) Yes 0) No");
+            int c = sc.nextInt();
+            Random rand = new Random();
+            if(c==1){
+                int rand_time = rand.nextInt(5);
+                System.out.println("Please Wait For A Person TO Leave ");
+                System.out.print("Waiting");
+                try {
+                    for (int i = 0; i< rand_time; i++) {
+                        Thread.sleep(1000);
+                        System.out.print(".");
+                    }
+                } catch (InterruptedException ie)
+                {
+                    Thread.currentThread().interrupt();
+                }
+                System.out.println("\nYou May Proceed To Bed Number: "+b+r);
+            }
+            else{
+                System.out.println("We Respect Your Decision. Thank You");
+            }
+        }
     }
 }
 

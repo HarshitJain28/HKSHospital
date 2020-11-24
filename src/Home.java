@@ -6,32 +6,21 @@ public class Home {
         int stop=1;
         Scanner sc = new Scanner(System.in);
         while(stop==1){
-            System.out.println("Choose One Of The Following: \n1)Our Doctors\n2)Patients\n3)HKS Pharmacy\n4)Our Facilities\n5)Contacts And FAQs\n6)EXIT");
+            System.out.println("Choose One Of The Following: \n1)Our Doctors\n2)Patients\n3)HKS Pharmacy\n4)Our Facilities\n5)EXIT");
             try {
                 int choice;
                 choice = sc.nextInt();
-                switch (choice){
-                    case 1:
-                       Doctor.docHome();
-                        break;
-                    case 2:
-                        Patient.patientHome();
-                        break;
-                    case 3:
-                        Pharmacy.pharmaHome();
-                        break;
-                    case 4:
-                       Facilities.facHome();
-                        break;
-                    case 5:
-                        //Contacts();
-                        break;
-                    case 6:
+                switch (choice) {
+                    case 1 -> Doctor.docHome();
+                    case 2 -> Patient.patientHome();
+                    case 3 -> Pharmacy.pharmaHome();
+                    case 4 -> Facilities.facHome();
+                    case 5 -> {
+                        System.out.println("Thank You For Visiting HKS Hospital");
                         System.out.println("Exiting...");
-                        stop=0;
-                        break;
-                    default:
-                        System.out.println("Invalid Choice");
+                        stop = 0;
+                    }
+                    default -> System.out.println("Invalid Choice");
                 }
             } catch (Exception e) {
                 System.out.println("Please Enter A Valid Input");

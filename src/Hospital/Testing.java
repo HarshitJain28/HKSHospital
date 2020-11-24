@@ -40,25 +40,28 @@ public class Testing {
 
         }
         else{flag=0;}
-        System.out.println("There Are Three Types Of Test Available");
-        System.out.println("1)Blood Test\n2)CT Scan\n3)X-Ray");
-        try {
-            int c;
-            c = sc.nextInt();
-            switch (c) {
-                case 1 -> bloodTest();
-                case 2 -> ctScan();
-                case 3 -> xRay();
-                case 4 -> {
-                    System.out.println("Returning Home....");
-                    Facilities.labTesting();
-                }
+        if(flag==1){
+            System.out.println("There Are Three Types Of Test Available");
+            System.out.println("1)Blood Test\n2)CT Scan\n3)X-Ray");
+            try {
+                int c;
+                c = sc.nextInt();
+                switch (c) {
+                    case 1 -> test(1000,"Blood Test");
+                    case 2 -> test(3000, "CT Scan");
+                    case 3 -> test(2000,"X Ray");
+                    case 4 -> {
+                        System.out.println("Returning Home....");
+                        Facilities.labTesting();
+                    }
 
-                default -> System.out.println("Invalid Choice");
+                    default -> System.out.println("Invalid Choice");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
+
     }
     public static void haveappointment(){
         System.out.println("Enter Your Lab-ID");
@@ -77,7 +80,7 @@ public class Testing {
                     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
                     LocalDateTime now = LocalDateTime.now();
                     if(testing[6].equals(dtf.format(now))){
-                        int timeToWait = 5; //second
+                        int timeToWait = 5;
                         System.out.print("Testing");
                         try {
                             for (int i=0; i<timeToWait ; i++) {
@@ -124,147 +127,7 @@ public class Testing {
         }
     }
 
-    public static void bloodTest(){
-        if(flag==1){
-            System.out.println("Lab Timings: 9 A.M To 3 P.M");
-            System.out.println("Price: Rs 1000");
-            System.out.println("Which Date is Feasible For You (ddmmyyyy)");
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("ddMMyyyy");
-            LocalDateTime now = LocalDateTime.now();
-            sc.nextLine();
-            String apDate = sc.nextLine();
-            while (Integer.parseInt(apDate) <= Integer.parseInt(dtf.format(now))){
-                System.out.println("Please Enter A Date Starting From Tomorrow");
-                apDate = sc.nextLine();
-            }
-            String labId = apDate+ "-" +id();
-            updatePatient(1000);
-            updateInTesting(1,pId,labId,"Blood Test",apDate);
-            System.out.println("Your Appointment Has Been Booked Successfully For: " + apDate.substring(0,2)+"-"+apDate.substring(2,4)+"-"+apDate.substring(4,8) + " And Your Lab Id Is: " + labId);
-        }
-        else{
-            System.out.println("Lab Timings: 9 A.M To 3 P.M");
-            System.out.println("Price: Rs 1500");
-            System.out.println("Enter Your First Name");
-            fname = sc.next();
-            System.out.println("Enter Your Last Name");
-            surname = sc.next();
-            System.out.println("Which Date is Feasible For You (ddmmyyyy)");
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("ddMMyyyy");
-            LocalDateTime now = LocalDateTime.now();
-            sc.nextLine();
-            String apDate = sc.nextLine();
-            while (Integer.parseInt(apDate) <= Integer.parseInt(dtf.format(now))){
-                System.out.println("Please Enter A Date Starting From Tomorrow");
-                apDate = sc.nextLine();
-            }
-            String labId = apDate+ "-" +id();
-            System.out.println("Amount To Be Paid: 1500");
-            int amnt = 0;
-            while (amnt!=1500){
-                System.out.println("Please Pay The Exact Amount");
-                amnt = sc.nextInt();
-            }
-            System.out.println("Payment Receieved");
-            updateInTesting(0,"NA",labId,"Blood Test",apDate);
-            System.out.println("Your Appointment Has Been Booked Successfully For: " + apDate.substring(0,2)+"-"+apDate.substring(2,4)+"-"+apDate.substring(4,8) + " And Your Lab Id Is: " + labId);
 
-        }
-    }
-    public static void ctScan(){
-        if(flag==1){
-            System.out.println("Lab Timings: 11 A.M To 4 P.M");
-            System.out.println("Price: Rs 4000");
-            System.out.println("Which Date is Feasible For You (ddmmyyyy)");
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("ddMMyyyy");
-            LocalDateTime now = LocalDateTime.now();
-            sc.nextLine();
-            String apDate = sc.nextLine();
-            while (Integer.parseInt(apDate) <= Integer.parseInt(dtf.format(now))){
-                System.out.println("Please Enter A Date Starting From Tomorrow");
-                apDate = sc.nextLine();
-            }
-            String labId = apDate+ "-" +id();
-            updatePatient(4000);
-            updateInTesting(1,pId,labId,"Ct Scan",apDate);
-            System.out.println("Your Appointment Has Been Booked Successfully For: " + apDate.substring(0,2)+"-"+apDate.substring(2,4)+"-"+apDate.substring(4,8) + " And Your Lab Id Is: " + labId);
-        }
-        else{
-            System.out.println("Lab Timings: 11 A.M To 4 P.M");
-            System.out.println("Price: Rs 5000");
-            System.out.println("Enter Your First Name");
-            fname = sc.next();
-            System.out.println("Enter Your Last Name");
-            surname = sc.next();
-            System.out.println("Which Date is Feasible For You (ddmmyyyy)");
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("ddMMyyyy");
-            LocalDateTime now = LocalDateTime.now();
-            sc.nextLine();
-            String apDate = sc.nextLine();
-            while (Integer.parseInt(apDate) <= Integer.parseInt(dtf.format(now))){
-                System.out.println("Please Enter A Date Starting From Tomorrow");
-                apDate = sc.nextLine();
-            }
-            String labId = apDate+ "-" +id();
-            System.out.println("Amount To Be Paid: 5000");
-            int amnt = 0;
-            while (amnt!=5000){
-                System.out.println("Please Pay The Exact Amount");
-                amnt = sc.nextInt();
-            }
-            System.out.println("Payment Receieved");
-            updateInTesting(0,"NA",labId,"CT Scan",apDate);
-            System.out.println("Your Appointment Has Been Booked Successfully For: " + apDate.substring(0,2)+"-"+apDate.substring(2,4)+"-"+apDate.substring(4,8) + " And Your Lab Id Is: " + labId);
-
-        }
-    }
-    public static void xRay(){
-        if(flag==1){
-            System.out.println("Lab Timings: 10 A.M To 5 P.M");
-            System.out.println("Price: Rs 3000");
-            System.out.println("Which Date is Feasible For You (ddmmyyyy)");
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("ddMMyyyy");
-            LocalDateTime now = LocalDateTime.now();
-            sc.nextLine();
-            String apDate = sc.nextLine();
-            while (Integer.parseInt(apDate) <= Integer.parseInt(dtf.format(now))){
-                System.out.println("Please Enter A Date Starting From Tomorrow");
-                apDate = sc.nextLine();
-            }
-            String labId = apDate+ "-" +id();
-            updatePatient(3000);
-            updateInTesting(1,pId,labId,"X-Ray",apDate);
-            System.out.println("Your Appointment Has Been Booked Successfully For: " + apDate.substring(0,2)+"-"+apDate.substring(2,4)+"-"+apDate.substring(4,8) + " And Your Lab Id Is: " + labId);
-        }
-        else{
-            System.out.println("Lab Timings: 10 A.M To 5 P.M");
-            System.out.println("Price: Rs 4000");
-            System.out.println("Enter Your First Name");
-            fname = sc.next();
-            System.out.println("Enter Your Last Name");
-            surname = sc.next();
-            System.out.println("Which Date is Feasible For You (ddmmyyyy)");
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("ddMMyyyy");
-            LocalDateTime now = LocalDateTime.now();
-            sc.nextLine();
-            String apDate = sc.nextLine();
-            while (Integer.parseInt(apDate) <= Integer.parseInt(dtf.format(now))){
-                System.out.println("Please Enter A Date Starting From Tomorrow");
-                apDate = sc.nextLine();
-            }
-            String labId = apDate+ "-" +id();
-            System.out.println("Amount To Be Paid: 4000");
-            int amnt = 0;
-            while (amnt!=4000){
-                System.out.println("Please Pay The Exact Amount");
-                amnt = sc.nextInt();
-            }
-            System.out.println("Payment Received");
-            updateInTesting(0,"NA",labId,"X-Ray",apDate);
-            System.out.println("Your Appointment Has Been Booked Successfully For: " + apDate.substring(0,2)+"-"+apDate.substring(2,4)+"-"+apDate.substring(4,8) + " And Your Lab Id Is: " + labId);
-
-        }
-    }
     public static String id() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HHmmss");
         LocalDateTime now = LocalDateTime.now();
@@ -317,6 +180,54 @@ public class Testing {
             System.out.println("Appointment Created");
         } catch (IOException ioe) {
             ioe.printStackTrace();
+        }
+    }
+    public static void test(int x,String type){
+
+        if(flag==1){
+            System.out.println("Lab Timings: 9 A.M To 3 P.M");
+            System.out.println("Price: Rs "+x);
+            System.out.println("Which Date is Feasible For You (ddmmyyyy)");
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("ddMMyyyy");
+            LocalDateTime now = LocalDateTime.now();
+            sc.nextLine();
+            String apDate = sc.nextLine();
+            while (Integer.parseInt(apDate) <= Integer.parseInt(dtf.format(now))){
+                System.out.println("Please Enter A Date Starting From Tomorrow");
+                apDate = sc.nextLine();
+            }
+            String labId = apDate+ "-" +id();
+            updatePatient(x);
+            updateInTesting(1,pId,labId,type,apDate);
+            System.out.println("Your Appointment Has Been Booked Successfully For: " + apDate.substring(0,2)+"-"+apDate.substring(2,4)+"-"+apDate.substring(4,8) + " And Your Lab Id Is: " + labId);
+        }
+        else{
+            System.out.println("Lab Timings: 9 A.M To 3 P.M");
+            System.out.println("Price: Rs "+(x+1000));
+            System.out.println("Enter Your First Name");
+            fname = sc.next();
+            System.out.println("Enter Your Last Name");
+            surname = sc.next();
+            System.out.println("Which Date is Feasible For You (ddmmyyyy)");
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("ddMMyyyy");
+            LocalDateTime now = LocalDateTime.now();
+            sc.nextLine();
+            String apDate = sc.nextLine();
+            while (Integer.parseInt(apDate) <= Integer.parseInt(dtf.format(now))){
+                System.out.println("Please Enter A Date Starting From Tomorrow");
+                apDate = sc.nextLine();
+            }
+            String labId = apDate+ "-" +id();
+            System.out.println("Amount To Be Paid: " + (x+1000));
+            int amnt = 0;
+            while (amnt!=(x+1000)){
+                System.out.println("Please Pay The Exact Amount");
+                amnt = sc.nextInt();
+            }
+            System.out.println("Payment Receieved");
+            updateInTesting(0,"NA",labId,type,apDate);
+            System.out.println("Your Appointment Has Been Booked Successfully For: " + apDate.substring(0,2)+"-"+apDate.substring(2,4)+"-"+apDate.substring(4,8) + " And Your Lab Id Is: " + labId);
+
         }
     }
 }
