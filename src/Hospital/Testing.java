@@ -4,9 +4,9 @@ import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
 
-public class Testing {
+
+public class Testing extends Facilities {
     static Scanner sc = new Scanner(System.in);
     static int flag=0;
     static String pId = "";
@@ -22,7 +22,7 @@ public class Testing {
             String line = "";
             String splitBy = ",";
             try {
-                BufferedReader br = new BufferedReader(new FileReader("D:\\HKSHospital\\src\\Hospital\\Patients.csv"));
+                BufferedReader br = new BufferedReader(new FileReader("D:\\HKSHospital\\src\\data\\Patients.csv"));
                 while ((line = br.readLine()) != null) {
                     String[] patient = line.split(splitBy);
                     if(patient[0].equals(pId) && patient[7].equals("Admitted")){
@@ -40,7 +40,7 @@ public class Testing {
 
         }
         else{flag=0;}
-        if(flag==1){
+        if(flag==1 || inHouse!=1){
             System.out.println("There Are Three Types Of Test Available");
             System.out.println("1)Blood Test\n2)CT Scan\n3)X-Ray");
             try {
@@ -52,7 +52,7 @@ public class Testing {
                     case 3 -> test(2000,"X Ray");
                     case 4 -> {
                         System.out.println("Returning Home....");
-                        Facilities.labTesting();
+                        labTesting();
                     }
 
                     default -> System.out.println("Invalid Choice");
@@ -70,9 +70,9 @@ public class Testing {
         String splitBy = ",";
         int notFound = 1;
         try {
-            FileWriter writer = new FileWriter("D:\\HKSHospital\\src\\Hospital\\Testings2.csv");
+            FileWriter writer = new FileWriter("D:\\HKSHospital\\src\\data\\Testings2.csv");
             BufferedWriter bwr = new BufferedWriter(writer);
-            BufferedReader br = new BufferedReader(new FileReader("D:\\HKSHospital\\src\\Hospital\\Testings.csv"));
+            BufferedReader br = new BufferedReader(new FileReader("D:\\HKSHospital\\src\\data\\Testings.csv"));
             while ((line = br.readLine()) != null) {
                 String[] testing = line.split(splitBy);
                 if(testing[2].equals(lid) && testing[7].equals("Pending")){
@@ -109,10 +109,10 @@ public class Testing {
             }
             br.close();
             bwr.close();
-            File deleteName = new File("D:\\HKSHospital\\src\\Hospital\\Testings.csv");
+            File deleteName = new File("D:\\HKSHospital\\src\\data\\Testings.csv");
             if (deleteName.delete()) {
-                File oldName = new File("D:\\HKSHospital\\src\\Hospital\\Testings2.csv");
-                File newName = new File("D:\\HKSHospital\\src\\Hospital\\Testings.csv");
+                File oldName = new File("D:\\HKSHospital\\src\\data\\Testings2.csv");
+                File newName = new File("D:\\HKSHospital\\src\\data\\Testings.csv");
                 if(oldName.renameTo(newName)) {
                     System.out.println("");
                 } else {
@@ -138,9 +138,9 @@ public class Testing {
         String line = "";
         String splitBy = ",";
         try {
-            FileWriter writer = new FileWriter("D:\\HKSHospital\\src\\Hospital\\Patients2.csv");
+            FileWriter writer = new FileWriter("D:\\HKSHospital\\src\\data\\Patients2.csv");
             BufferedWriter bwr = new BufferedWriter(writer);
-            BufferedReader br = new BufferedReader(new FileReader("D:\\HKSHospital\\src\\Hospital\\Patients.csv"));
+            BufferedReader br = new BufferedReader(new FileReader("D:\\HKSHospital\\src\\data\\Patients.csv"));
             while ((line = br.readLine()) != null) {
                 String[] patient = line.split(splitBy);
                 if (patient[0].equals(pId) && patient[7].equals("Admitted")) {
@@ -153,10 +153,10 @@ public class Testing {
             }
             br.close();
             bwr.close();
-            File deleteName = new File("D:\\HKSHospital\\src\\Hospital\\Patients.csv");
+            File deleteName = new File("D:\\HKSHospital\\src\\data\\Patients.csv");
             if (deleteName.delete()) {
-                File oldName = new File("D:\\HKSHospital\\src\\Hospital\\Patients2.csv");
-                File newName = new File("D:\\HKSHospital\\src\\Hospital\\Patients.csv");
+                File oldName = new File("D:\\HKSHospital\\src\\data\\Patients2.csv");
+                File newName = new File("D:\\HKSHospital\\src\\data\\Patients.csv");
                 if (oldName.renameTo(newName)) {
                     System.out.println("");
                 } else {
@@ -172,7 +172,7 @@ public class Testing {
     }
     public static void updateInTesting(int cat, String id, String lid, String test, String apDate){
         try {
-            FileWriter writer = new FileWriter("D:\\HKSHospital\\src\\Hospital\\Testings.csv", true);
+            FileWriter writer = new FileWriter("D:\\HKSHospital\\src\\data\\Testings.csv", true);
             BufferedWriter bwr = new BufferedWriter(writer);
             bwr.write(cat + "," + id + "," + lid + "," + fname + "," + surname + "," + test + "," + apDate.substring(0,2)+"-"+apDate.substring(2,4)+"-"+apDate.substring(4,8)+","+"Pending");
             bwr.write("\n");

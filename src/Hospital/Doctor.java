@@ -4,14 +4,12 @@ import java.util.Scanner;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 
-
 public class Doctor {
     static int currTime, flag=0;
     static Scanner sc = new Scanner(System.in);
     public static void docHome() {
         System.out.println("DOCTORS");
         int stop = 1;
-
         while (stop == 1) {
             System.out.println("Choose One Of The Following: \n1)Doctor Records\n2)Available Doctors\n3)Add New Entry\n4)Back");
             try {
@@ -37,7 +35,7 @@ public class Doctor {
         String line = "";
         String splitBy = ",";
         try{
-            BufferedReader br = new BufferedReader(new FileReader("D:\\HKSHospital\\src\\Hospital\\Doctors.csv"));
+            BufferedReader br = new BufferedReader(new FileReader("D:\\HKSHospital\\src\\data\\Doctors.csv"));
            if(flag==0){
                System.out.println(" ______________________________________________________________________________________________________________________________________________");
                System.out.printf("| %-15s | | %-15s | | %-15s | | %-15s | | %-15s | | %-10s | | %-10s | | %-10s |%n","First Name","Surname","Specialization","Qualification","Cabin Number","In Time","Out Time","Contacts");
@@ -54,8 +52,7 @@ public class Doctor {
                System.out.println(" ______________________________________________________________________________________________________________________________________________");
                System.out.printf("| %-15s | | %-15s | | %-15s | | %-15s | | %-15s | | %-10s | | %-10s | | %-10s |%n","First Name","Surname","Specialization","Qualification","Cabin Number","In Time","Out Time","Contacts");
                System.out.println(" ----------------------------------------------------------------------------------------------------------------------------------------------");
-               while ((line = br.readLine()) != null)
-               {
+               while ((line = br.readLine()) != null){
                    String[] doctor = line.split(splitBy);
                    if(Integer.parseInt(doctor[5]) <= currTime && Integer.parseInt(doctor[6]) >= currTime) {
                        System.out.printf("| %-15s | | %-15s | | %-15s | | %-15s | | %-15s | | %-10s | | %-10s | | %-10s |%n",doctor[0], doctor[1], doctor[2], doctor[3], doctor[4] ,  doctor[5],doctor[6], doctor[7]);
@@ -73,7 +70,7 @@ public class Doctor {
     }
     public static void addDoc() {
         try {
-            FileWriter writer = new FileWriter("D:\\HKSHospital\\src\\Hospital\\Doctors.csv", true);
+            FileWriter writer = new FileWriter("D:\\HKSHospital\\src\\data\\Doctors.csv", true);
             BufferedWriter bwr = new BufferedWriter(writer);
             sc.nextLine();
             System.out.println("Enter First Name");
@@ -99,7 +96,7 @@ public class Doctor {
             bwr.write(docName + "," + lastName + "," + spec + "," + qual + "," + cabin + "," + inhrs + "," + outhrs + "," + contact);
             bwr.write("\n");
             bwr.close();
-            System.out.println("Doctor Successfully Added To The List");
+            System.out.println("Successfully Added To The List");
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }

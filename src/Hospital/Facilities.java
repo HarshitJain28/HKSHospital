@@ -39,7 +39,7 @@ public class Facilities extends Patient{
         String line = "";
         String splitBy = ",";
         try{
-            BufferedReader br = new BufferedReader(new FileReader("D:\\HKSHospital\\src\\Hospital\\Doctors.csv"));
+            BufferedReader br = new BufferedReader(new FileReader("D:\\HKSHospital\\src\\data\\Doctors.csv"));
                 System.out.println(" ______________________________________________________________________________________________________________________________________________");
                 System.out.printf("| %-15s | | %-15s | | %-15s | | %-15s | | %-15s | | %-10s | | %-10s | | %-10s |%n","First Name","Surname","Specialization","Qualification","Cabin Number","In Time","Out Time","Contacts");
                 System.out.println(" ----------------------------------------------------------------------------------------------------------------------------------------------");
@@ -57,7 +57,7 @@ public class Facilities extends Patient{
         }
         System.out.println("Some Of Our Strong-willed Patients Who Have Won The War Against Cancer Are: ");
         try {
-            BufferedReader br = new BufferedReader(new FileReader("D:\\HKSHospital\\src\\Hospital\\Patients.csv"));
+            BufferedReader br = new BufferedReader(new FileReader("D:\\HKSHospital\\src\\data\\Patients.csv"));
             System.out.println(" __________________________________________________________________________________________");
             System.out.printf("| %-14s | | %-14s | | %-14s | | %-15s | | %-11s |%n","Unique ID", "First Name", "Last Name", "Reason Of Admit", "Status");
             System.out.println(" ------------------------------------------------------------------------------------------");

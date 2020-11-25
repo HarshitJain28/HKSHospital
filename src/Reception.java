@@ -1,6 +1,6 @@
 import java.util.Scanner;
 import Hospital.*;
-public class Home {
+public class Reception {
     public static void main(String[] args) {
         System.out.println("Welcome To HKS Hospital");
         int stop=1;

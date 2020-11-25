@@ -44,9 +44,9 @@ public class Pharmacy extends Patient{
         flag=0;
         String splitBy = ",";
         try {
-            FileWriter writer = new FileWriter("D:\\HKSHospital\\src\\Hospital\\Patients2.csv");
+            FileWriter writer = new FileWriter("D:\\HKSHospital\\src\\data\\Patients2.csv");
             BufferedWriter bwr = new BufferedWriter(writer);
-            BufferedReader br = new BufferedReader(new FileReader("D:\\HKSHospital\\src\\Hospital\\Patients.csv"));
+            BufferedReader br = new BufferedReader(new FileReader("D:\\HKSHospital\\src\\data\\Patients.csv"));
             while ((line = br.readLine()) != null) {
                 String[] patient = line.split(splitBy);
                 if(patient[0].equals(id) && patient[7].equals("Admitted")){
@@ -66,10 +66,10 @@ public class Pharmacy extends Patient{
             }
             br.close();
             bwr.close();
-            File deleteName = new File("D:\\HKSHospital\\src\\Hospital\\Patients.csv");
+            File deleteName = new File("D:\\HKSHospital\\src\\data\\Patients.csv");
             if (deleteName.delete()) {
-                File oldName = new File("D:\\HKSHospital\\src\\Hospital\\Patients2.csv");
-                File newName = new File("D:\\HKSHospital\\src\\Hospital\\Patients.csv");
+                File oldName = new File("D:\\HKSHospital\\src\\data\\Patients2.csv");
+                File newName = new File("D:\\HKSHospital\\src\\data\\Patients.csv");
                 if(oldName.renameTo(newName)) {
                     System.out.print("");
                 } else {
@@ -135,9 +135,9 @@ public class Pharmacy extends Patient{
             int check2 =0;
             String splitBy = ",";
             try {
-                FileWriter writer = new FileWriter("D:\\HKSHospital\\src\\Hospital\\Pharm2.csv");
+                FileWriter writer = new FileWriter("D:\\HKSHospital\\src\\data\\Pharm2.csv");
                 BufferedWriter bwr = new BufferedWriter(writer);
-                BufferedReader br = new BufferedReader(new FileReader("D:\\HKSHospital\\src\\Hospital\\Pharm.csv"));
+                BufferedReader br = new BufferedReader(new FileReader("D:\\HKSHospital\\src\\data\\Pharm.csv"));
                 while ((line = br.readLine()) != null) {
                     String[] medicine = line.split(splitBy);
                     if(medicine[0].equals(name)){
@@ -173,10 +173,10 @@ public class Pharmacy extends Patient{
                 if(check==10){System.out.println("The Given Medicine Is Not Available Right Now");}
                 br.close();
                 bwr.close();
-                File deleteName = new File("D:\\HKSHospital\\src\\Hospital\\Pharm.csv");
+                File deleteName = new File("D:\\HKSHospital\\src\\data\\Pharm.csv");
                 if (deleteName.delete()) {
-                    File oldName = new File("D:\\HKSHospital\\src\\Hospital\\Pharm2.csv");
-                    File newName = new File("D:\\HKSHospital\\src\\Hospital\\Pharm.csv");
+                    File oldName = new File("D:\\HKSHospital\\src\\data\\Pharm2.csv");
+                    File newName = new File("D:\\HKSHospital\\src\\data\\Pharm.csv");
                     if(oldName.renameTo(newName)) {
                         System.out.print("");
                     } else {
@@ -206,7 +206,7 @@ public class Pharmacy extends Patient{
             String splitBy = ",";
             int notFound=0;
             try {
-                BufferedReader br = new BufferedReader(new FileReader("D:\\HKSHospital\\src\\Hospital\\Pharm.csv"));
+                BufferedReader br = new BufferedReader(new FileReader("D:\\HKSHospital\\src\\data\\Pharm.csv"));
                 while ((line = br.readLine()) != null) {
                     String[] medicine = line.split(splitBy);
                     if(medicine[1].equals(type)){
