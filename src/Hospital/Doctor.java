@@ -8,7 +8,7 @@ public class Doctor {
     static int currTime, flag=0;
     static Scanner sc = new Scanner(System.in);
     public static void docHome() {
-        System.out.println("DOCTORS");
+        System.out.println("DOCTORS AND STAFF");
         int stop = 1;
         while (stop == 1) {
             System.out.println("Choose One Of The Following: \n1)Doctor Records\n2)Available Doctors\n3)Add New Entry\n4)Back");

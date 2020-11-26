@@ -1,3 +1,4 @@
+import java.io.Console;
 import java.util.Scanner;
 import Hospital.*;
 public class Reception {
@@ -6,7 +7,7 @@ public class Reception {
         int stop=1;
         Scanner sc = new Scanner(System.in);
         while(stop==1){
-            System.out.println("Choose One Of The Following: \n1)Our Doctors\n2)Patients\n3)HKS Pharmacy\n4)Our Facilities\n5)EXIT");
+            System.out.println("Choose One Of The Following: \n1)Our Doctors And Staff\n2)Patients\n3)HKS Pharmacy\n4)Our Facilities\n5)EXIT");
             try {
                 int choice;
                 choice = sc.nextInt();

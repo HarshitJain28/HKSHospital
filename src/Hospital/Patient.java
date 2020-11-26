@@ -29,10 +29,10 @@ public class Patient {
                     case 5 -> {
                         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH");
                         LocalDateTime now = LocalDateTime.now();
-                        if(Integer.parseInt(dtf.format(now))  > 00 && Integer.parseInt(dtf.format(now)) < 3 )
+                        if(Integer.parseInt(dtf.format(now))  >= 13 && Integer.parseInt(dtf.format(now)) <= 17 )
                             visitation();
                         else{
-                            System.out.println("Visiting Timings Are From 2 P.M To 6 P.M");
+                            System.out.println("Visiting Timings Are From 1 P.M To 6 P.M");
                         }
                     }
                     case 6 -> {
@@ -363,17 +363,19 @@ public class Patient {
         if(visit[x][Integer.parseInt(r)] < y){
             visit[x][Integer.parseInt(r)]  += 1;
             System.out.println("You May Proceed To Bed Number: "+b+r);
+            System.out.println("Currently There Are: " +visit[x][Integer.parseInt(r)]+" Visitors In The Room" );
         }
         else{
+            System.out.println("Currently There Are: " +visit[x][Integer.parseInt(r)]+" Visitors In The Room" );
             System.out.println("Room Already Filled. Would You Like To Wait For Someone To Leave 1) Yes 0) No");
             int c = sc.nextInt();
             Random rand = new Random();
             if(c==1){
-                int rand_time = rand.nextInt(5);
+                int rand_time = rand.nextInt(6);
                 System.out.println("Please Wait For A Person TO Leave ");
                 System.out.print("Waiting");
                 try {
-                    for (int i = 0; i< rand_time; i++) {
+                    for (int i = -3; i< rand_time; i++) {
                         Thread.sleep(1000);
                         System.out.print(".");
                     }
@@ -382,6 +384,7 @@ public class Patient {
                     Thread.currentThread().interrupt();
                 }
                 System.out.println("\nYou May Proceed To Bed Number: "+b+r);
+                System.out.println("Currently There Are: " +visit[x][Integer.parseInt(r)]+" Visitors In The Room" );
             }
             else{
                 System.out.println("We Respect Your Decision. Thank You");
